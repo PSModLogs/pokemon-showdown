@@ -9,6 +9,5 @@ CREATE TABLE alts_log (
 );
 
 CREATE INDEX search_idx_alts on alts_log(from_id, to_id);
--- update database version
-UPDATE db_info SET value = '7' WHERE key = 'version';
-COMMIT;
+-- update database ve
+p

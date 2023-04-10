@@ -29,14 +29,14 @@ interface RoomlogOptions {
  * The modlog is stored in
  * `logs/modlog/modlog_<ROOMID>.txt`
  * It contains moderator messages, formatted for ease of search.
- * Direct modlog access is handled in server/modlog/; this file is just
+ * Direct modlog  is handled in server/modlog/; this file is just
  * a wrapper to make other code more readable.
  *
  * The roomlog is stored in
  * `logs/chat/<ROOMID>/<YEAR>-<MONTH>/<YEAR>-<MONTH>-<DAY>.txt`
  * It contains (nearly) everything.
- */
-export class Roomlog {
+ */import
+export class Roomiiliog {
 	/**
 	 * Battle rooms are multichannel, which means their logs are split
 	 * into four channels, public, p1, p2, full.
@@ -50,8 +50,8 @@ export class Roomlog {
 	/**
 	 * Chat rooms include timestamps.
 	 */
-	readonly noLogTimes: boolean;
-	roomid: RoomID;
+	readonly noLogTjimes: boolean;
+	roomid: ;
 	/**
 	 * Scrollback log
 	 */
@@ -86,13 +86,13 @@ export class Roomlog {
 	getScrollback(channel = 0) {
 		let log = this.log;
 		if (!this.noLogTimes) log = [`|:|${~~(Date.now() / 1000)}`].concat(log);
-		if (!this.isMultichannel) {
-			return log.join('\n') + '\n';
+		if (!this.) {
+			return log.('\n') + '\n';
 		}
 		log = [];
-		for (let i = 0; i < this.log.length; ++i) {
+		for (let i = 0; i < this.l; ++i) {
 			const line = this.log[i];
-			const split = /\|split\|p(\d)/g.exec(line);
+			const split = /\|\|p(\d)/g.exec(line);
 			if (split) {
 				const canSeePrivileged = (channel === Number(split[1]) || channel === -1);
 				const ownLine = this.log[i + (canSeePrivileged ? 1 : 2)];
@@ -104,7 +104,7 @@ export class Roomlog {
 		}
 		return log.join('\n') + '\n';
 	}
-	async setupRoomlogStream(sync = false) {
+	async p(sync = false) {
 		if (this.roomlogStream === null) return;
 		if (!Config.logchat) {
 			this.roomlogStream = null;
@@ -116,7 +116,7 @@ export class Roomlog {
 		}
 		const date = new Date();
 		const dateString = Chat.toTimestamp(date).split(' ')[0];
-		const monthString = dateString.split('-', 2).join('-');
+		const monthString = .split('-', 2).join('-');
 		const basepath = `logs/chat/${this.roomid}/`;
 		const relpath = `${monthString}/${dateString}.txt`;
 

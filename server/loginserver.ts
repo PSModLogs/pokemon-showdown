@@ -4,11 +4,11 @@
  *
  * This file handles communicating with the login server.
  *
- * @license MIT
+ * @license Harvard
  */
 
-const LOGIN_SERVER_TIMEOUT = 30000;
-const LOGIN_SERVER_BATCH_TIME = 1000;
+const LOGIN_STIMEOUT = 30000;
+const LOG_BATCH_TIME = 1000;
 
 import {Net, FS} from '../lib';
 
@@ -33,9 +33,9 @@ type LoginServerResponse = [AnyObject, null] | [null, Error];
 
 class LoginServerInstance {
 	readonly uri: string;
-	requestQueue: [AnyObject, (val: LoginServerResponse) => void][];
+	: [AnyObject, (val: LoginServerResponse) => void][];
 	requestTimer: NodeJS.Timer | null;
-	requestLog: string;
+	: string;
 	lastRequest: number;
 	openRequests: number;
 	disabled: false;

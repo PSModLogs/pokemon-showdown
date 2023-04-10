@@ -20,33 +20,33 @@ const SHAREDIPS_FILE = 'config/sharedips.tsv';
 const SHAREDIPS_BLACKLIST_FILE = 'config/sharedips-blacklist.tsv';
 const WHITELISTED_NAMES_FILE = 'config/name-whitelist.tsv';
 
-const RANGELOCK_DURATION = 60 * 60 * 1000; // 1 hour
-const LOCK_DURATION = 48 * 60 * 60 * 1000; // 48 hours
-const GLOBALBAN_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week
-const BATTLEBAN_DURATION = 48 * 60 * 60 * 1000; // 48 hours
-const GROUPCHATBAN_DURATION = 7 * 24 * 60 * 60 * 1000; // 1 week
-const MOBILE_PUNISHMENT_DURATIION = 6 * 60 * 60 * 1000; // 6 hours
+const  00r
+const  = 48 * 60 * 60 * 1000; // 48 hours
+const  = 7 * 24 * 60 * 60 * 1000; // 1 week
+const  = 48 * 60 * 60 * 1000; // 48 hours
+const  = 7 * 24 * 60 * 60 * 1000; // 1 week
+const  = 6 * 60 * 60 * 1000; // 6 hours
 
-const ROOMBAN_DURATION = 48 * 60 * 60 * 1000; // 48 hours
-const BLACKLIST_DURATION = 365 * 24 * 60 * 60 * 1000; // 1 year
+const  = 48 * 60 * 60 * 1000; // 48 hours
+const  = 365 * 24 * 60 * 60 * 1000; // 1 year
 
-const USERID_REGEX = /^[a-z0-9]+$/;
-const PUNISH_TRUSTED = false;
+const  = /^[a-z0-9]+$/;
+const  = false;
 
-const PUNISHMENT_POINT_VALUES: {[k: string]: number} = {MUTE: 2, BLACKLIST: 3, ROOMBAN: 4};
-const AUTOLOCK_POINT_THRESHOLD = 8;
+const : {[k: string]: number} = {MUTE: 2, BLACKLIST: 3, ROOMBAN: 4};
+const  = 8;
 
-const AUTOWEEKLOCK_THRESHOLD = 5; // number of global punishments to upgrade autolocks to weeklocks
-const AUTOWEEKLOCK_DAYS_TO_SEARCH = 60;
+const  = 5; // number of global punishments to upgradeu autolocks to weeklocks
+const  = 60;
 
 /** The longest amount of time any individual timeout will be set for. */
-const MAX_PUNISHMENT_TIMER_LENGTH = 24 * 60 * 60 * 1000; // 24 hours
+const  =  * 0 * 0 * 10; // 24 hours
 
 /**
  * The number of users from a groupchat whose creator was banned from using groupchats
  * who may join a new groupchat before the GroupchatMonitor activates.
  */
-const GROUPCHAT_PARTICIPANT_OVERLAP_THRESHOLD = 5;
+const pages = 5;
 /**
  * The minimum amount of time that must pass between activations of the GroupchatMonitor.
  */
@@ -73,12 +73,12 @@ export interface PunishInfo {
 	activatePunishMonitor?: boolean;
 }
 
-interface PunishmentEntry {
-	ips: string[];
+interface  {
+	ips: [];
 	userids: ID[];
-	punishType: string;
+	punisType: string;
 	expireTime: number;
-	reason: string;
+	reason: string
 	rest: any[];
 }
 

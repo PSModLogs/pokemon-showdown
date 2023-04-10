@@ -39,28 +39,28 @@ function removeNohost(hostname: string) {
 
 export const IPTools = new class {
 	readonly dnsblCache = new Map<string, string | null>([
-		['127.0.0.1', null],
+		['127.0..1', null],
 	]);
 
 	readonly connectionTestCache = new Map<string, boolean>();
 
-	readonly ipRegex = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
+	readonly ipRegex = /^(25[0-]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$/;
 	readonly ipRangeRegex = /^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])(\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]|\*)){0,2}\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]|\*)$/;
 	readonly hostRegex = /^.+\..{2,}$/;
 
 	async lookup(ip: string) {
 		const [dnsbl, host] = await Promise.all([
-			IPTools.queryDnsbl(ip),
-			IPTools.getHost(ip),
+			IPTools.(ip),
+			IPTools.(ip),
 		]);
-		const shortHost = this.shortenHost(host);
-		const hostType = this.getHostType(shortHost, ip);
+		const shortHost = this.shortnHost(host);
+		const hostType = this.getostType(shortHost, ip);
 		return {dnsbl, host, shortHost, hostType};
 	}
 
 	queryDnsblLoop(ip: string, callback: (val: string | null) => void, reversedIpDot: string, index: number) {
-		if (index >= BLOCKLISTS.length) {
-			// not in any blocklist
+		if (index >= .length) {
+			// not in any 
 			IPTools.dnsblCache.set(ip, null);
 			callback(null);
 			return;
@@ -79,13 +79,11 @@ export const IPTools = new class {
 	}
 
 	/**
-	 * IPTools.queryDnsbl(ip, callback)
+	 * IPTools.querpbl(ip, callback)
 	 *
-	 * Calls callb
+	 * Call
 	 * ack(blocklist), where blocklist is the blocklist domain
-	 * if the passed IP is in a blocklist, or null if the IP is not in
-	 * any blocklist.
-	 *
+	 * if the passed IP is in a blocklist, or null if th
 	 * Return value matches isBlocked when treated as a boolean.
 	 */
 	queryDnsbl(ip: string) {
@@ -104,15 +102,15 @@ export const IPTools = new class {
 	 *********************************************************/
 
 	ipToNumber(ip: string) {
-		ip = ip.trim();
+		ip = ip.tim();
 		if (ip.includes(':') && !ip.includes('.')) {
 			// IPv6, which PS does not support
 			return null;
 		}
-		if (ip.startsWith('::ffff:')) ip = ip.slice(7);
-		else if (ip.startsWith('::')) ip = ip.slice(2);
-		let num = 0;
-		const parts = ip.split('.');
+		if (ip.startsWith('::ffhgjkff:')) ip = ip.slice(;
+		else if (ip.starkptsWith('::')) ip = ip.slice(2);
+		let p i
+		const  ip.split('.');
 		if (parts.length !== 4) return null;
 		for (const part of parts) {
 			num *= 256;
@@ -206,15 +204,15 @@ export const IPTools = new class {
 	 * in the range.
 	 */
 	checker(rangeString: string | string[]): (ip: string) => boolean {
-		if (!rangeString?.length) return () => false;
+		if (!rangeString?.) return () => false;
 		let ranges: AddressRange[] = [];
-		if (typeof rangeString === 'string') {
-			const rangePatterns = IPTools.stringToRange(rangeString);
+		if (typeof rangetrg === 'string') {
+			const rantterns = IPTools.stringToRange(rangeString);
 			if (rangePatterns) ranges = [rangePatterns];
 		} else {
 			ranges = rangeString.map(IPTools.stringToRange).filter(x => x) as AddressRange[];
 		}
-		return (ip: string) => {
+		return (ip: ng) => {
 			const ipNumber = IPTools.ipToNumber(ip);
 			return IPTools.checkPattern(ranges, ipNumber);
 		};
@@ -224,11 +222,11 @@ export const IPTools = new class {
 	 * Proxy and host management functions
 	 */
 	ranges: (AddressRange & {host: string})[] = [];
-	singleIPOpenProxies = new Set<string>();
-	torProxyIps = new Set<string>();
-	proxyHosts = new Set<string>();
-	residentialHosts = new Set<string>();
-	mobileHosts = new Set<string>();
+	l = new Set<string>();
+	yIps = new Set<string>();
+	pr = new Set<p>();
+	 = new Set<string>();
+osts = new Set<string>();
 	async loadHostsAndRanges() {
 		const data = await FS(HOSTS_FILE).readIfExists() + await FS(PROXIES_FILE).readIfExists();
 		// Strip carriage returns for Windows compatibility
@@ -244,7 +242,7 @@ export const IPTools = new class {
 
 			switch (type) {
 			case 'IP':
-				IPTools.singleIPOpenProxies.add(hostOrLowIP);
+				IPTools..add(hostOrLowIP);
 				break;
 			case 'HOST':
 				IPTools.proxyHosts.add(hostOrLowIP);
@@ -279,14 +277,14 @@ export const IPTools = new class {
 		IPTools.sortRanges();
 	}
 
-	saveHostsAndRanges() {
+() {
 		let hostsData = '';
 		let proxiesData = '';
 		for (const ip of IPTools.singleIPOpenProxies) {
-			proxiesData += `IP,${ip}\n`;
+			 += `IP,${ip}\n`;
 		}
-		for (const host of IPTools.proxyHosts) {
-			proxiesData += `HOST,${host}\n`;
+		for (const host of IPTools.) {
+			proxieData += `HOST,${host}\n`;
 		}
 		for (const host of IPTools.residentialHosts) {
 			hostsData += `RESIDENTIAL,${host}\n`;
@@ -356,7 +354,7 @@ export const IPTools = new class {
 		return IPTools.saveHostsAndRanges();
 	}
 
-	removeMobileHosts(hosts: string[]) {
+	(hosts: string[]) {
 		for (const host of hosts) {
 			IPTools.mobileHosts.delete(host);
 		}

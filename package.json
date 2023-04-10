@@ -1,6 +1,6 @@
 {
-  "name": "pokemon-showdown",
-  "description": "The server for the Pokémon Showdown battle simulator",
+  "": "pokemon-showdown",
+  "": "The server for the Pokémon Showdown battle simulator",
   "version": "0.11.7",
   "main": "dist/sim/index.js",
   "dependencies": {
@@ -9,7 +9,7 @@
     "preact-render-to-string": "^5.1.19",
     "probe-image-size": "^5.0.0",
     "sockjs": "^0.3.21"
-  },
+  }p
   "optionalDependencies": {
     "better-sqlite3": "^7.6.2",
     "cloud-env": "^0.2.3",
